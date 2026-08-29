@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Mochilas del Sur - Productos</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+
+<div class="dashboard">
+
+    <header class="header">
+
+        <div>
+            <h1>Mochilas del Sur</h1>
+            <p>Gestión de productos</p>
+        </div>
+
+        <div class="usuario">
+
+            <span>
+                {{ session["usuario"] }} -
+                {{ session["rol"] }}
+            </span>
+
+            <a href="{{ url_for('logout') }}">
+                Cerrar sesión
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="contenido">
+
+        <div class="titulo-seccion">
+
+            <div>
+                <h2>Productos</h2>
+                <p>Listado de productos registrados</p>
+            </div>
+
+            <div>
+
+                <a href="{{ url_for('agregar_producto') }}" class="boton">
+                + Agregar producto
+            </a>
+
+            <a href="{{ url_for('inicio') }}" class="boton-volver">
+                Volver al inicio
+            </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="tabla-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Color</th>
+                        <th>Tamaño</th>
+                        <th>Material</th>
+                        <th>Stock</th>
+                        <th>Stock mínimo</th>
+                        <th>Taller</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for producto in productos %}
+
+                    <tr>
+                        <td>{{ producto["modelo"] }}</td>
+                        <td>{{ producto["color"] }}</td>
+                        <td>{{ producto["talle"] }}</td>
+                        <td>{{ producto["material"] }}</td>
+                        <td>{{ producto["stock"] }}</td>
+                        <td>{{ producto["stock_minimo"] }}</td>
+                        <td>{{ producto["taller"] }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+</html>

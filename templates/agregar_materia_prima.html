@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Mochilas del Sur - Agregar materia prima</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+
+<div class="dashboard">
+
+    <header class="header">
+
+        <div>
+            <h1>Mochilas del Sur</h1>
+            <p>Gestión de materias primas</p>
+        </div>
+
+        <div class="usuario">
+
+            <span>
+                {{ session["usuario"] }} -
+                {{ session["rol"] }}
+            </span>
+
+            <a href="{{ url_for('logout') }}">
+                Cerrar sesión
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="contenido">
+
+        <div class="titulo-seccion">
+
+            <div>
+                <h2>Agregar materia prima</h2>
+                <p>Registrar un nuevo material</p>
+            </div>
+
+            <a href="{{ url_for('materias_primas') }}"
+               class="boton-volver">
+                Volver
+            </a>
+
+        </div>
+
+
+        <div class="formulario-container">
+
+            <form method="POST">
+
+                <label for="nombre">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ej: Tela de nylon"
+                    required
+                >
+
+
+                <label for="cantidad">
+                    Cantidad
+                </label>
+
+                <input
+                    type="number"
+                    id="cantidad"
+                    name="cantidad"
+                    min="0"
+                    required
+                >
+
+
+                <label for="stock_minimo">
+                    Stock mínimo
+                </label>
+
+                <input
+                    type="number"
+                    id="stock_minimo"
+                    name="stock_minimo"
+                    min="0"
+                    required
+                >
+
+
+                <label for="taller">
+                    Taller
+                </label>
+
+                <input
+                    type="text"
+                    id="taller"
+                    name="taller"
+                    placeholder="Ej: Taller Central"
+                    required
+                >
+
+
+                <button type="submit">
+                    Guardar materia prima
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+</html>

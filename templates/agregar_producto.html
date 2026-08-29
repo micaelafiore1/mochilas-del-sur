@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Mochilas del Sur - Agregar producto</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="header">
+
+        <div>
+            <h1>Mochilas del Sur</h1>
+            <p>Gestión de productos</p>
+        </div>
+
+        <div class="usuario">
+
+            <span>
+                {{ session["usuario"] }} -
+                {{ session["rol"] }}
+            </span>
+
+            <a href="{{ url_for('logout') }}">
+                Cerrar sesión
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="contenido">
+
+        <div class="titulo-seccion">
+
+            <div>
+                <h2>Agregar producto</h2>
+                <p>Registrar un nuevo producto</p>
+            </div>
+
+            <a href="{{ url_for('productos') }}" class="boton-volver">
+                Volver a productos
+            </a>
+
+        </div>
+
+
+        <div class="formulario-container">
+
+            <form method="POST">
+
+                <label for="modelo">Modelo</label>
+                <input
+                    type="text"
+                    id="modelo"
+                    name="modelo"
+                    placeholder="Ej: Mochila Urbana"
+                    required
+                >
+
+                <label for="color">Color</label>
+                <input
+                    type="text"
+                    id="color"
+                    name="color"
+                    placeholder="Ej: Negro"
+                    required
+                >
+
+                <label for="talle">Tamaño</label>
+                <input
+                    type="text"
+                    id="talle"
+                    name="talle"
+                    placeholder="Ej: Mediana"
+                    required
+                >
+
+                <label for="material">Material</label>
+                <input
+                    type="text"
+                    id="material"
+                    name="material"
+                    placeholder="Ej: Nylon"
+                    required
+                >
+
+                <label for="stock">Stock inicial</label>
+                <input
+                    type="number"
+                    id="stock"
+                    name="stock"
+                    min="0"
+                    required
+                >
+
+                <label for="stock_minimo">Stock mínimo</label>
+                <input
+                    type="number"
+                    id="stock_minimo"
+                    name="stock_minimo"
+                    min="0"
+                    required
+                >
+
+                <label for="taller">Taller</label>
+                <input
+                    type="text"
+                    id="taller"
+                    name="taller"
+                    placeholder="Ej: Taller Central"
+                    required
+                >
+
+                <button type="submit">
+                    Guardar producto
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+</html>

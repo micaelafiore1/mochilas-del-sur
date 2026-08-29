@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mochilas del Sur - Inicio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <header class="header">
+
+            <div>
+                <h1>Mochilas del Sur</h1>
+                <p>Sistema de gestión de stock</p>
+            </div>
+
+            <div class="usuario">
+
+                <span>
+                    {{ session["usuario"] }} -
+                    {{ session["rol"] }}
+                </span>
+
+                <a href="{{ url_for('logout') }}">
+                    Cerrar sesión
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <main class="contenido">
+
+            <h2>Panel principal</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Productos</h3>
+                    <p>Gestionar productos y variantes.</p>
+                    <a href="{{ url_for('productos') }}" class="boton">
+                        Ver productos
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h3>Stock</h3>
+                    <p>Consultar existencias y alertas.</p>
+                    <a href="{{ url_for('stock') }}" class="boton">
+                        Ver stock
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h3>Ventas</h3>
+                    <p>Registrar y consultar ventas.</p>
+                    <a href="{{ url_for('ventas') }}" class="boton">
+                        Ver ventas
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h3>Materias primas</h3>
+                    <p>Controlar materiales disponibles.</p>
+                    <a href="{{ url_for('materias_primas') }}" class="boton">
+                        Ver materias primas
+                    </a>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
