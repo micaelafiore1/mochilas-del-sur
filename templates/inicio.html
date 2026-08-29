@@ -1,85 +1,238 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mochilas del Sur - Inicio</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Mochilas del Sur - Inicio</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+
 </head>
 
 <body>
 
-    <div class="dashboard">
-
-        <header class="header">
-
-            <div>
-                <h1>Mochilas del Sur</h1>
-                <p>Sistema de gestión de stock</p>
-            </div>
-
-            <div class="usuario">
-
-                <span>
-                    {{ session["usuario"] }} -
-                    {{ session["rol"] }}
-                </span>
-
-                <a href="{{ url_for('logout') }}">
-                    Cerrar sesión
-                </a>
-
-            </div>
-
-        </header>
+<div class="dashboard">
 
 
-        <main class="contenido">
+<header class="header">
 
-            <h2>Panel principal</h2>
+    <div>
 
-            <div class="cards">
+        <h1>Mochilas del Sur</h1>
 
-                <div class="card">
-                    <h3>Productos</h3>
-                    <p>Gestionar productos y variantes.</p>
-                    <a href="{{ url_for('productos') }}" class="boton">
-                        Ver productos
-                    </a>
-                </div>
-
-                <div class="card">
-                    <h3>Stock</h3>
-                    <p>Consultar existencias y alertas.</p>
-                    <a href="{{ url_for('stock') }}" class="boton">
-                        Ver stock
-                    </a>
-                </div>
-
-                <div class="card">
-                    <h3>Ventas</h3>
-                    <p>Registrar y consultar ventas.</p>
-                    <a href="{{ url_for('ventas') }}" class="boton">
-                        Ver ventas
-                    </a>
-                </div>
-
-                <div class="card">
-                    <h3>Materias primas</h3>
-                    <p>Controlar materiales disponibles.</p>
-                    <a href="{{ url_for('materias_primas') }}" class="boton">
-                        Ver materias primas
-                    </a>
-                </div>
-
-            </div>
-
-        </main>
+        <p>
+            Sistema de gestión de inventario
+        </p>
 
     </div>
 
+
+    <div class="usuario">
+
+        <span>
+
+            {{ session["usuario"] }}
+            -
+            {{ session["rol"] }}
+
+        </span>
+
+
+        <a href="{{ url_for('logout') }}">
+            Cerrar sesión
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="contenido">
+
+
+    <h2>Panel principal</h2>
+
+    <p class="descripcion">
+        Resumen del estado actual del negocio.
+    </p>
+
+
+
+    <div class="resumen">
+
+
+        <div class="resumen-card">
+
+            <h3>Productos</h3>
+
+            <strong>
+                {{ cantidad_productos }}
+            </strong>
+
+            <p>
+                productos registrados
+            </p>
+
+        </div>
+
+
+
+        <div class="resumen-card">
+
+            <h3>Stock bajo</h3>
+
+            <strong>
+                {{ productos_stock_bajo }}
+            </strong>
+
+            <p>
+                productos requieren atención
+            </p>
+
+        </div>
+
+
+
+        <div class="resumen-card">
+
+            <h3>Materias primas</h3>
+
+            <strong>
+                {{ cantidad_materias }}
+            </strong>
+
+            <p>
+                materiales registrados
+            </p>
+
+        </div>
+
+
+
+        <div class="resumen-card">
+
+            <h3>Materias bajas</h3>
+
+            <strong>
+                {{ materias_stock_bajo }}
+            </strong>
+
+            <p>
+                materiales requieren atención
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <h2 class="titulo-accesos">
+        Accesos rápidos
+    </h2>
+
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h3>Productos</h3>
+
+            <p>
+                Consultar y registrar productos.
+            </p>
+
+            <a href="{{ url_for('productos') }}"
+               class="boton">
+
+                Ver productos
+
+            </a>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <h3>Stock</h3>
+
+            <p>
+                Consultar existencias y alertas.
+            </p>
+
+            <a href="{{ url_for('stock') }}"
+               class="boton">
+
+                Ver stock
+
+            </a>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <h3>Ventas</h3>
+
+            <p>
+                Registrar nuevas ventas.
+            </p>
+
+            <a href="{{ url_for('ventas') }}"
+               class="boton">
+
+                Registrar venta
+
+            </a>
+
+            <a href="{{ url_for('historial_ventas') }}" class="boton-volver">
+                Historial
+            </a>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <h3>Materias primas</h3>
+
+            <p>
+                Controlar materiales disponibles.
+            </p>
+
+            <a href="{{ url_for('materias_primas') }}"
+               class="boton">
+
+                Ver materias primas
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</div>
+
 </body>
+
 </html>

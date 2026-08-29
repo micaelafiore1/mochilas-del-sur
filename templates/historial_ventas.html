@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Mochilas del Sur - Historial de ventas</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+
+<header class="header">
+
+    <div>
+
+        <h1>Mochilas del Sur</h1>
+
+        <p>
+            Historial de ventas
+        </p>
+
+    </div>
+
+
+    <div class="usuario">
+
+        <span>
+            {{ session["usuario"] }}
+            -
+            {{ session["rol"] }}
+        </span>
+
+        <a href="{{ url_for('logout') }}">
+            Cerrar sesión
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="contenido">
+
+
+    <div class="titulo-seccion">
+
+        <div>
+
+            <h2>Historial de ventas</h2>
+
+            <p>
+                Ventas registradas en el sistema
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a href="{{ url_for('ventas') }}"
+               class="boton">
+
+                + Nueva venta
+
+            </a>
+
+            <a href="{{ url_for('inicio') }}"
+               class="boton-volver">
+
+                Volver al inicio
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="tabla-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Producto</th>
+                    <th>Color</th>
+                    <th>Cantidad</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for venta in ventas %}
+
+                <tr>
+
+                    <td>{{ venta["id"] }}</td>
+
+                    <td>{{ venta["modelo"] }}</td>
+
+                    <td>{{ venta["color"] }}</td>
+
+                    <td>{{ venta["cantidad"] }}</td>
+
+                    <td>{{ venta["usuario"] }}</td>
+
+                    <td>{{ venta["fecha"] }}</td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="6">
+                        No hay ventas registradas.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</main>
+
+
+</div>
+
+</body>
+
+</html>

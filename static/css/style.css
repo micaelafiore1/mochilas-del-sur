@@ -250,3 +250,42 @@ th {
     border-radius: 5px;
     background-color: white;
 }
+
+.descripcion {
+    color: #666;
+    margin-top: -15px;
+    margin-bottom: 30px;
+}
+
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.resumen-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.resumen-card h3 {
+    margin-top: 0;
+}
+
+.resumen-card strong {
+    font-size: 32px;
+    display: block;
+    margin: 10px 0;
+}
+
+.resumen-card p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+.titulo-accesos {
+    margin-bottom: 25px;
+}

@@ -44,7 +44,41 @@ def inicio():
     if "usuario" not in session:
         return redirect(url_for("login"))
 
-    return render_template("inicio.html")
+    conexion = conectar()
+
+    cantidad_productos = conexion.execute(
+        "SELECT COUNT(*) FROM productos"
+    ).fetchone()[0]
+
+    productos_stock_bajo = conexion.execute(
+        """
+        SELECT COUNT(*)
+        FROM productos
+        WHERE stock <= stock_minimo
+        """
+    ).fetchone()[0]
+
+    cantidad_materias = conexion.execute(
+        "SELECT COUNT(*) FROM materias_primas"
+    ).fetchone()[0]
+
+    materias_stock_bajo = conexion.execute(
+        """
+        SELECT COUNT(*)
+        FROM materias_primas
+        WHERE cantidad <= stock_minimo
+        """
+    ).fetchone()[0]
+
+    conexion.close()
+
+    return render_template(
+        "inicio.html",
+        cantidad_productos=cantidad_productos,
+        productos_stock_bajo=productos_stock_bajo,
+        cantidad_materias=cantidad_materias,
+        materias_stock_bajo=materias_stock_bajo
+    )
 
 @app.route("/productos")
 def productos():
@@ -156,6 +190,37 @@ def ventas():
     return render_template(
         "ventas.html",
         productos=productos
+    )
+
+@app.route("/historial-ventas")
+def historial_ventas():
+
+    if "usuario" not in session:
+        return redirect(url_for("login"))
+
+    conexion = conectar()
+
+    ventas = conexion.execute(
+        """
+        SELECT
+            ventas.id,
+            productos.modelo,
+            productos.color,
+            ventas.cantidad,
+            ventas.usuario,
+            ventas.fecha
+        FROM ventas
+        INNER JOIN productos
+            ON ventas.producto_id = productos.id
+        ORDER BY ventas.fecha DESC
+        """
+    ).fetchall()
+
+    conexion.close()
+
+    return render_template(
+        "historial_ventas.html",
+        ventas=ventas
     )
     
 @app.route("/materias-primas")
